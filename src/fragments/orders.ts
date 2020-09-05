@@ -1,6 +1,7 @@
 import gql from "graphql-tag";
 
 import { fragmentAddress } from "./address";
+import { metadataFragment } from "./metadata";
 
 export const fragmentOrderEvent = gql`
   fragment OrderEventFragment on OrderEvent {
@@ -24,6 +25,13 @@ export const fragmentOrderLine = gql`
   fragment OrderLineFragment on OrderLine {
     id
     isShippingRequired
+    variant {
+      product {
+        isAvailableForPurchase
+        isPublished
+      }
+      quantityAvailable
+    }
     productName
     productSku
     quantity
@@ -80,8 +88,10 @@ export const fragmentOrderDetails = gql`
   ${fragmentOrderLine}
   ${fulfillmentFragment}
   ${invoiceFragment}
+  ${metadataFragment}
   fragment OrderDetailsFragment on Order {
     id
+    ...MetadataFragment
     billingAddress {
       ...AddressFragment
     }

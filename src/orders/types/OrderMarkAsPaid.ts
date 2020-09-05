@@ -14,6 +14,18 @@ export interface OrderMarkAsPaid_orderMarkAsPaid_errors {
   field: string | null;
 }
 
+export interface OrderMarkAsPaid_orderMarkAsPaid_order_metadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
+export interface OrderMarkAsPaid_orderMarkAsPaid_order_privateMetadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
 export interface OrderMarkAsPaid_orderMarkAsPaid_order_billingAddress_country {
   __typename: "CountryDisplay";
   code: string;
@@ -56,6 +68,18 @@ export interface OrderMarkAsPaid_orderMarkAsPaid_order_events {
   user: OrderMarkAsPaid_orderMarkAsPaid_order_events_user | null;
 }
 
+export interface OrderMarkAsPaid_orderMarkAsPaid_order_fulfillments_lines_orderLine_variant_product {
+  __typename: "Product";
+  isAvailableForPurchase: boolean | null;
+  isPublished: boolean;
+}
+
+export interface OrderMarkAsPaid_orderMarkAsPaid_order_fulfillments_lines_orderLine_variant {
+  __typename: "ProductVariant";
+  product: OrderMarkAsPaid_orderMarkAsPaid_order_fulfillments_lines_orderLine_variant_product;
+  quantityAvailable: number;
+}
+
 export interface OrderMarkAsPaid_orderMarkAsPaid_order_fulfillments_lines_orderLine_unitPrice_gross {
   __typename: "Money";
   amount: number;
@@ -83,6 +107,7 @@ export interface OrderMarkAsPaid_orderMarkAsPaid_order_fulfillments_lines_orderL
   __typename: "OrderLine";
   id: string;
   isShippingRequired: boolean;
+  variant: OrderMarkAsPaid_orderMarkAsPaid_order_fulfillments_lines_orderLine_variant | null;
   productName: string;
   productSku: string;
   quantity: number;
@@ -114,6 +139,18 @@ export interface OrderMarkAsPaid_orderMarkAsPaid_order_fulfillments {
   warehouse: OrderMarkAsPaid_orderMarkAsPaid_order_fulfillments_warehouse | null;
 }
 
+export interface OrderMarkAsPaid_orderMarkAsPaid_order_lines_variant_product {
+  __typename: "Product";
+  isAvailableForPurchase: boolean | null;
+  isPublished: boolean;
+}
+
+export interface OrderMarkAsPaid_orderMarkAsPaid_order_lines_variant {
+  __typename: "ProductVariant";
+  product: OrderMarkAsPaid_orderMarkAsPaid_order_lines_variant_product;
+  quantityAvailable: number;
+}
+
 export interface OrderMarkAsPaid_orderMarkAsPaid_order_lines_unitPrice_gross {
   __typename: "Money";
   amount: number;
@@ -141,6 +178,7 @@ export interface OrderMarkAsPaid_orderMarkAsPaid_order_lines {
   __typename: "OrderLine";
   id: string;
   isShippingRequired: boolean;
+  variant: OrderMarkAsPaid_orderMarkAsPaid_order_lines_variant | null;
   productName: string;
   productSku: string;
   quantity: number;
@@ -265,6 +303,8 @@ export interface OrderMarkAsPaid_orderMarkAsPaid_order_invoices {
 export interface OrderMarkAsPaid_orderMarkAsPaid_order {
   __typename: "Order";
   id: string;
+  metadata: (OrderMarkAsPaid_orderMarkAsPaid_order_metadata | null)[];
+  privateMetadata: (OrderMarkAsPaid_orderMarkAsPaid_order_privateMetadata | null)[];
   billingAddress: OrderMarkAsPaid_orderMarkAsPaid_order_billingAddress | null;
   canFinalize: boolean;
   created: any;

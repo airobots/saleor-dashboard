@@ -14,6 +14,18 @@ export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_e
   field: string | null;
 }
 
+export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_metadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
+export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_privateMetadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
 export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_billingAddress_country {
   __typename: "CountryDisplay";
   code: string;
@@ -56,6 +68,18 @@ export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_o
   user: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_events_user | null;
 }
 
+export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments_lines_orderLine_variant_product {
+  __typename: "Product";
+  isAvailableForPurchase: boolean | null;
+  isPublished: boolean;
+}
+
+export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments_lines_orderLine_variant {
+  __typename: "ProductVariant";
+  product: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments_lines_orderLine_variant_product;
+  quantityAvailable: number;
+}
+
 export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments_lines_orderLine_unitPrice_gross {
   __typename: "Money";
   amount: number;
@@ -83,6 +107,7 @@ export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_o
   __typename: "OrderLine";
   id: string;
   isShippingRequired: boolean;
+  variant: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments_lines_orderLine_variant | null;
   productName: string;
   productSku: string;
   quantity: number;
@@ -114,6 +139,18 @@ export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_o
   warehouse: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_fulfillments_warehouse | null;
 }
 
+export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_lines_variant_product {
+  __typename: "Product";
+  isAvailableForPurchase: boolean | null;
+  isPublished: boolean;
+}
+
+export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_lines_variant {
+  __typename: "ProductVariant";
+  product: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_lines_variant_product;
+  quantityAvailable: number;
+}
+
 export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_lines_unitPrice_gross {
   __typename: "Money";
   amount: number;
@@ -141,6 +178,7 @@ export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_o
   __typename: "OrderLine";
   id: string;
   isShippingRequired: boolean;
+  variant: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_lines_variant | null;
   productName: string;
   productSku: string;
   quantity: number;
@@ -265,6 +303,8 @@ export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_o
 export interface OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order {
   __typename: "Order";
   id: string;
+  metadata: (OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_metadata | null)[];
+  privateMetadata: (OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_privateMetadata | null)[];
   billingAddress: OrderFulfillmentUpdateTracking_orderFulfillmentUpdateTracking_order_billingAddress | null;
   canFinalize: boolean;
   created: any;

@@ -944,6 +944,15 @@ export const order = (placeholder: string): OrderDetails_order => ({
                 amount: 79.71,
                 currency: "USD"
               }
+            },
+            variant: {
+              __typename: "ProductVariant",
+              product: {
+                __typename: "Product",
+                isAvailableForPurchase: true,
+                isPublished: true
+              },
+              quantityAvailable: 10
             }
           },
           quantity: 1
@@ -985,6 +994,15 @@ export const order = (placeholder: string): OrderDetails_order => ({
                 amount: 79.71,
                 currency: "USD"
               }
+            },
+            variant: {
+              __typename: "ProductVariant",
+              product: {
+                __typename: "Product",
+                isAvailableForPurchase: true,
+                isPublished: true
+              },
+              quantityAvailable: 10
             }
           },
           quantity: 1
@@ -1031,6 +1049,15 @@ export const order = (placeholder: string): OrderDetails_order => ({
           amount: 18.51,
           currency: "USD"
         }
+      },
+      variant: {
+        __typename: "ProductVariant",
+        product: {
+          __typename: "Product",
+          isAvailableForPurchase: true,
+          isPublished: true
+        },
+        quantityAvailable: 10
       }
     },
     {
@@ -1057,11 +1084,28 @@ export const order = (placeholder: string): OrderDetails_order => ({
           amount: 79.71,
           currency: "USD"
         }
+      },
+      variant: {
+        __typename: "ProductVariant",
+        product: {
+          __typename: "Product",
+          isAvailableForPurchase: true,
+          isPublished: true
+        },
+        quantityAvailable: 10
       }
+    }
+  ],
+  metadata: [
+    {
+      __typename: "MetadataItem",
+      key: "integration.key",
+      value: "some-value"
     }
   ],
   number: "9",
   paymentStatus: PaymentChargeStatusEnum.NOT_CHARGED,
+  privateMetadata: [],
   shippingAddress: {
     __typename: "Address",
     city: "West Patriciastad",
@@ -1173,6 +1217,15 @@ export const draftOrder = (placeholder: string): OrderDetails_order => ({
           amount: 65.95,
           currency: "USD"
         }
+      },
+      variant: {
+        __typename: "ProductVariant",
+        product: {
+          __typename: "Product",
+          isAvailableForPurchase: true,
+          isPublished: true
+        },
+        quantityAvailable: 10
       }
     },
     {
@@ -1199,11 +1252,22 @@ export const draftOrder = (placeholder: string): OrderDetails_order => ({
           amount: 68.2,
           currency: "USD"
         }
+      },
+      variant: {
+        __typename: "ProductVariant",
+        product: {
+          __typename: "Product",
+          isAvailableForPurchase: true,
+          isPublished: true
+        },
+        quantityAvailable: 10
       }
     }
   ],
+  metadata: [],
   number: "24",
   paymentStatus: null,
+  privateMetadata: [],
   shippingAddress: null,
   shippingMethod: null,
   shippingMethodName: null,

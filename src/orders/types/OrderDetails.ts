@@ -8,6 +8,18 @@ import { OrderEventsEmailsEnum, OrderEventsEnum, FulfillmentStatus, PaymentCharg
 // GraphQL query operation: OrderDetails
 // ====================================================
 
+export interface OrderDetails_order_metadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
+export interface OrderDetails_order_privateMetadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
 export interface OrderDetails_order_billingAddress_country {
   __typename: "CountryDisplay";
   code: string;
@@ -50,6 +62,18 @@ export interface OrderDetails_order_events {
   user: OrderDetails_order_events_user | null;
 }
 
+export interface OrderDetails_order_fulfillments_lines_orderLine_variant_product {
+  __typename: "Product";
+  isAvailableForPurchase: boolean | null;
+  isPublished: boolean;
+}
+
+export interface OrderDetails_order_fulfillments_lines_orderLine_variant {
+  __typename: "ProductVariant";
+  product: OrderDetails_order_fulfillments_lines_orderLine_variant_product;
+  quantityAvailable: number;
+}
+
 export interface OrderDetails_order_fulfillments_lines_orderLine_unitPrice_gross {
   __typename: "Money";
   amount: number;
@@ -77,6 +101,7 @@ export interface OrderDetails_order_fulfillments_lines_orderLine {
   __typename: "OrderLine";
   id: string;
   isShippingRequired: boolean;
+  variant: OrderDetails_order_fulfillments_lines_orderLine_variant | null;
   productName: string;
   productSku: string;
   quantity: number;
@@ -108,6 +133,18 @@ export interface OrderDetails_order_fulfillments {
   warehouse: OrderDetails_order_fulfillments_warehouse | null;
 }
 
+export interface OrderDetails_order_lines_variant_product {
+  __typename: "Product";
+  isAvailableForPurchase: boolean | null;
+  isPublished: boolean;
+}
+
+export interface OrderDetails_order_lines_variant {
+  __typename: "ProductVariant";
+  product: OrderDetails_order_lines_variant_product;
+  quantityAvailable: number;
+}
+
 export interface OrderDetails_order_lines_unitPrice_gross {
   __typename: "Money";
   amount: number;
@@ -135,6 +172,7 @@ export interface OrderDetails_order_lines {
   __typename: "OrderLine";
   id: string;
   isShippingRequired: boolean;
+  variant: OrderDetails_order_lines_variant | null;
   productName: string;
   productSku: string;
   quantity: number;
@@ -259,6 +297,8 @@ export interface OrderDetails_order_invoices {
 export interface OrderDetails_order {
   __typename: "Order";
   id: string;
+  metadata: (OrderDetails_order_metadata | null)[];
+  privateMetadata: (OrderDetails_order_privateMetadata | null)[];
   billingAddress: OrderDetails_order_billingAddress | null;
   canFinalize: boolean;
   created: any;

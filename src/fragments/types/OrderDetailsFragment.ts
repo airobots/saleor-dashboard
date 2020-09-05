@@ -8,6 +8,18 @@ import { OrderEventsEmailsEnum, OrderEventsEnum, FulfillmentStatus, PaymentCharg
 // GraphQL fragment: OrderDetailsFragment
 // ====================================================
 
+export interface OrderDetailsFragment_metadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
+export interface OrderDetailsFragment_privateMetadata {
+  __typename: "MetadataItem";
+  key: string;
+  value: string;
+}
+
 export interface OrderDetailsFragment_billingAddress_country {
   __typename: "CountryDisplay";
   code: string;
@@ -50,6 +62,18 @@ export interface OrderDetailsFragment_events {
   user: OrderDetailsFragment_events_user | null;
 }
 
+export interface OrderDetailsFragment_fulfillments_lines_orderLine_variant_product {
+  __typename: "Product";
+  isAvailableForPurchase: boolean | null;
+  isPublished: boolean;
+}
+
+export interface OrderDetailsFragment_fulfillments_lines_orderLine_variant {
+  __typename: "ProductVariant";
+  product: OrderDetailsFragment_fulfillments_lines_orderLine_variant_product;
+  quantityAvailable: number;
+}
+
 export interface OrderDetailsFragment_fulfillments_lines_orderLine_unitPrice_gross {
   __typename: "Money";
   amount: number;
@@ -77,6 +101,7 @@ export interface OrderDetailsFragment_fulfillments_lines_orderLine {
   __typename: "OrderLine";
   id: string;
   isShippingRequired: boolean;
+  variant: OrderDetailsFragment_fulfillments_lines_orderLine_variant | null;
   productName: string;
   productSku: string;
   quantity: number;
@@ -108,6 +133,18 @@ export interface OrderDetailsFragment_fulfillments {
   warehouse: OrderDetailsFragment_fulfillments_warehouse | null;
 }
 
+export interface OrderDetailsFragment_lines_variant_product {
+  __typename: "Product";
+  isAvailableForPurchase: boolean | null;
+  isPublished: boolean;
+}
+
+export interface OrderDetailsFragment_lines_variant {
+  __typename: "ProductVariant";
+  product: OrderDetailsFragment_lines_variant_product;
+  quantityAvailable: number;
+}
+
 export interface OrderDetailsFragment_lines_unitPrice_gross {
   __typename: "Money";
   amount: number;
@@ -135,6 +172,7 @@ export interface OrderDetailsFragment_lines {
   __typename: "OrderLine";
   id: string;
   isShippingRequired: boolean;
+  variant: OrderDetailsFragment_lines_variant | null;
   productName: string;
   productSku: string;
   quantity: number;
@@ -259,6 +297,8 @@ export interface OrderDetailsFragment_invoices {
 export interface OrderDetailsFragment {
   __typename: "Order";
   id: string;
+  metadata: (OrderDetailsFragment_metadata | null)[];
+  privateMetadata: (OrderDetailsFragment_privateMetadata | null)[];
   billingAddress: OrderDetailsFragment_billingAddress | null;
   canFinalize: boolean;
   created: any;
